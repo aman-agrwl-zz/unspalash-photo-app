@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,25 +14,29 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    width: 500,
-    height: 450,
+    width: 300,
+    height: 250,
+    padding:'20px',
+    borderRadius:10
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
+    fontSize:12,
+    lineHeight:20
   },
 }));
 
 export default function ImageThumbnail(props) {
   const classes = useStyles();
   return (
-    <GridListTile key={props.id}>
-      <img src={props.image} alt={props.title} />
+    <GridListTile key={props.id} className={classes.gridList}>
+      <img src={props.urls.regular} alt={props.title} />
       <GridListTileBar
-        title={props.title}
-        subtitle={<span>by: {props.type}</span>}
+        title={props.alt_description}
+        subtitle={<span>by: {props.user.name}</span>}
         actionIcon={
-          <IconButton aria-label={`info about ${props.title}`} className={classes.icon}>
-            <InfoIcon />
+          <IconButton className={classes.icon}>
+            <ThumbUpIcon /> {props.likes} 
           </IconButton>
         }
       />

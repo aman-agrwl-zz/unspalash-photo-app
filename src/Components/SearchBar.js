@@ -102,6 +102,13 @@ export default function PrimarySearchAppBar(props) {
     props.onChange(listView)
   }
 
+  const keyPress = (event) => {
+    if(event.keyCode === 13){
+      console.log('value', event.target.value);
+      props.queryChange(event.target.value)
+   }
+  }
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -131,6 +138,7 @@ export default function PrimarySearchAppBar(props) {
             </div>
             <InputBase
               placeholder="Search…"
+              onKeyDown={keyPress}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,

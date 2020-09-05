@@ -4,6 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,10 +15,11 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     margin: '20px auto',
     maxWidth: 1000,
+    textAlign: 'left',
   },
   image: {
-    width: 128,
-    height: 128,
+    width: 210,
+    height: 158,
   },
   img: {
     margin: 'auto',
@@ -34,25 +37,20 @@ export default function ImageList(props) {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="complex" src={props.image} />
+              <img className={classes.img} alt="complex" src={props.urls.regular} />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
-                  {props.name}
+                  {props.alt_description}
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  {props.species} || {props.type} || {props.status}
+                  <ThumbUpIcon/>{props.likes} 
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  ID: {props.id}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                  Remove
+                  by: {props.user.name}
                 </Typography>
               </Grid>
             </Grid>
