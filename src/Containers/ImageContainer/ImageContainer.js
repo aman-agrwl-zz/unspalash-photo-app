@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import ImageThumbnail from '../../Components/ImageThumbnail/ImageThumbnail';
 import ImageList from '../../Components/ImageList/ImageList';
 import GridList from '@material-ui/core/GridList';
-import ViewComfyIcon from '@material-ui/icons/ViewComfy';
-import ListIcon from '@material-ui/icons/List';
-import styles from './imageContainer.module.css'; 
+import styles from './imageContainer.module.css';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 
 
 const API_URL = 'https://rickandmortyapi.com/api/character/?page=19';
@@ -14,14 +14,7 @@ export default class ImageContainer extends Component {
     super(props);
     this.state = {
       images: [],
-      listView: false
     }
-  }
-
-  toggleView = () => {
-    this.setState((state, props) => {
-      return { listView: !state.listView };
-    });
   }
 
   componentDidMount() {
@@ -39,13 +32,10 @@ export default class ImageContainer extends Component {
 
   render() {
     let imageComponent = null;
-    // const classes = useStyles();
-    if (this.state.listView) {
+    if (this.props.listView) {
       imageComponent = (
         <div>
-          <ListIcon onClick={this.toggleView} />
           {this.state.images.length ? this.state.images.map(image => {
-            // const listView = this.state.listView;
             return (
               <ImageList key={image.id} {...image} />
             )
@@ -56,7 +46,6 @@ export default class ImageContainer extends Component {
     } else {
       imageComponent = (
         <div className={styles.flexBox}>
-          <ViewComfyIcon onClick={this.toggleView} />
           <GridList cellHeight={180} className={styles.gridList}>
             {this.state.images.length ? this.state.images.map(image => {
               return (
@@ -70,8 +59,12 @@ export default class ImageContainer extends Component {
     }
     return (
       <div>
-        <h2>Images from unsplash</h2>
-        {imageComponent}
+
+        <Container maxWidth="md">
+          <Box color="text.primary">
+            {imageComponent}
+          </Box>
+        </Container>
       </div>
     )
   }
