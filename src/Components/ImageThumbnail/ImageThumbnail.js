@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   gridList: {
     width: 300,
     height: 250,
-    padding:'20px',
+    padding:'10px',
     borderRadius:10
   },
   icon: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ImageThumbnail(props) {
   const classes = useStyles();
   return (
-    <GridListTile key={props.id} className={classes.gridList}>
+    <GridListTile className={classes.gridList}>
       <img src={props.urls.regular} alt={props.title} />
       <GridListTileBar
         title={props.alt_description}

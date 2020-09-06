@@ -8,7 +8,6 @@ import Container from '@material-ui/core/Container';
 import noResults from '../../no-results.jpg';
 // import Pagination from '@material-ui/lab/Pagination';
 
-
 const API_URL = process.env.REACT_APP_API_URL
 export default class ImageContainer extends Component {
   constructor(props) {
@@ -63,17 +62,20 @@ export default class ImageContainer extends Component {
     } else {
       imageComponent = (
         <div className={styles.flexBox}>
-          {this.state.images.length ? this.state.images.map(image => {
-            return (
-              <GridList cellHeight={180} className={styles.flexBox}>
+          <GridList cellHeight={180} className={styles.gridList} cols={4}>
+            {this.state.images.length && this.state.images.map(image => {
+              return (
                 <ImageThumbnail key={image.id} {...image} />
-              </GridList>
-            )
-          }) : (
+              )
+            })
+            }
+          </GridList>
+          {!this.state.images.length && 
+            (
               <div className={styles.emptyState}>
-                <img src={noResults} alt="NO Results Found" /></div>
-            )
-          }
+                <img src={noResults} alt="NO Results Found" />
+              </div>
+            )}
         </div>
       )
 
